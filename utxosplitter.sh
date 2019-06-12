@@ -5,11 +5,11 @@ cd "${BASH_SOURCE%/*}" || exit
 # e.g "KMD"
 specific_coin=$1
 
-kmd_target_utxo_count=100
-kmd_split_threshold=50
+kmd_target_utxo_count=50
+kmd_split_threshold=25
 
-other_target_utxo_count=25
-other_split_threshold=15
+other_target_utxo_count=20
+other_split_threshold=10
 
 date=$(date +%Y-%m-%d:%H:%M:%S)
 
@@ -41,20 +41,24 @@ fi
 
     satoshis=10000
     amount=$(calc $satoshis/100000000)
+    listunspent=$(${cli} listunspent)
+    numtotal=$(echo ${listunspent} | jq length)
+    if [[ "${listunspent}" = "" ]] || [[ ${numtotal} = 0 ]]; then
+      echo "[$coin] Listuspent call failed aborting!"
+    else
+      utxo_count=$(echo ${listunspent} | jq '[.[] | select (.scriptPubKey | length > 60 )]' | grep 0.0001 | wc -l)
+      echo "[${coin}] Current UTXO count is ${utxo_count}"
+      utxo_required=$(calc ${target_utxo_count}-${utxo_count})
 
-    utxo_count=$(${cli} listunspent | jq -r '.[].amount' | grep ${amount} | wc -l)
-    echo "[${coin}] Current UTXO count is ${utxo_count}"
-
-    utxo_required=$(calc ${target_utxo_count}-${utxo_count})
-
-    if [[ ${utxo_required} -gt ${split_threshold} ]]; then
-      echo "[${coin}] Splitting ${utxo_required} extra UTXOs"
-      json=$(./splitfunds.sh ${coin} ${utxo_required})
-      txid=$(echo ${json} | jq -r '.txid')
-      if [[ ${txid} != "null" ]]; then
-        echo "[${coin}] Split TXID: ${txid}"
-      else
-        echo "[${coin}] Error: $(echo ${json} | jq -r '.error')"
+      if [[ ${utxo_required} -gt ${split_threshold} ]]; then
+        echo "[${coin}] Splitting ${utxo_required} extra UTXOs"
+        json=$(./splitfunds.sh ${coin} ${utxo_required})
+        txid=$(echo ${json} | jq -r '.txid')
+        if [[ ${txid} != "null" ]]; then
+          echo "[${coin}] Split TXID: ${txid}"
+        else
+          echo "[${coin}] Error: $(echo ${json} | jq -r '.error')"
+        fi
       fi
     fi
   fi
