@@ -13,7 +13,7 @@
     "45.32.241.0"
   ],
   "notaries": [
-	  { "test1": "022dff9708437376358caa25f8c73dfa402be8ba55fedf430f082e4a6a2733fcfa" },
+	  { "test1": "03b6138d95e4524ac18b511f97d49aedc0922e55fb3bd29195b68082ad7c612589" },
 	  { "test2": "03555fc8af271bb759fdf3a58456632ff5ffd88490daacbba1e55eb1454b26f88b" },
 	  { "test3": "03cfe87c4aa1ebd6b898b216ea3f3ca166a57fc0d5e5cb9446225fbf67239dbd0a" },
 	  { "test4": "033a8ced4ac89d5e68538ecbb2830d8346b88811d9ecb688ff894fbce5c7a0d727" },
