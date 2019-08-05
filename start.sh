@@ -248,12 +248,12 @@ for row in $(echo "${ac_json}" | jq  -r '.[].ac_name'); do
 done
 
 iguanajson=$(cat staked.json | jq -c '.' )
-newiguanajson=$(komodo/master/komodo-cli getiguanajson | jq -c '.')
-if [ "$iguanajson" != "$newiguanajson" ]; then
-    echo $newiguanajson > staked.json
-    pkill -15 iguana
-    sleep 2
-fi
+#newiguanajson=$(komodo/master/komodo-cli getiguanajson | jq -c '.')
+#if [ "$iguanajson" != "$newiguanajson" ]; then
+#    echo $newiguanajson > staked.json
+#    pkill -15 iguana
+#    sleep 2
+#fi
 
 if [[ $abort -eq 0 ]]; then
   echo -e "\033[1;32m ALL CHAINS SYNC'd Starting Iguana if it needs starting then adding new chains for dPoW... \033[0m"
