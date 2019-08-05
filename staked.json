@@ -13,6 +13,15 @@
     "45.32.241.0"
   ],
   "notaries": [
-	  { "test1": "022dff9708437376358caa25f8c73dfa402be8ba55fedf430f082e4a6a2733fcfa" }
+	  { "test1": "022dff9708437376358caa25f8c73dfa402be8ba55fedf430f082e4a6a2733fcfa" },
+	  { "test2": "" },
+	  { "test3": "" },
+	  { "test4": "" },
+	  { "test5": "" },
+	  { "test6": "" },
+	  { "test7": "" },
+	  { "test8": "" },
+	  { "test9": "" },
+	  { "test10": "" }
   ]
 }
