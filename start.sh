@@ -239,13 +239,13 @@ if [[ $outcome = 0 ]]; then
   abort=1
 fi
 
-for row in $(echo "${ac_json}" | jq  -r '.[].ac_name'); do
-  checksync $row
-  outcome=$(echo $?)
-  if [[ $outcome = 0 ]]; then
-    abort=1
-  fi
-done
+#for row in $(echo "${ac_json}" | jq  -r '.[].ac_name'); do
+#  checksync $row
+#  outcome=$(echo $?)
+#  if [[ $outcome = 0 ]]; then
+#    abort=1
+#  fi
+#done
 
 iguanajson=$(cat staked.json | jq -c '.' )
 #newiguanajson=$(komodo/master/komodo-cli getiguanajson | jq -c '.')
