@@ -14,9 +14,12 @@ except:
     sys.exit(0)
 
 # print the key asked for
-if keytoprint == 'pub':
-    print(config[ENVIRON]['btcpubkey'])
-if keytoprint == 'wif':
-    print(config[ENVIRON]['wifkey'])
-if keytoprint == 'Radd':
-    print(config[ENVIRON]['Radd'])
+try:
+    if keytoprint == 'pub':
+        print(config[ENVIRON]['btcpubkey'])
+    if keytoprint == 'wif':
+        print(config[ENVIRON]['wifkey'])
+    if keytoprint == 'Radd':
+        print(config[ENVIRON]['Radd'])
+except:
+    sys.exit(1)

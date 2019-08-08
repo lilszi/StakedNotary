@@ -1,10 +1,24 @@
 #!/bin/bash
+daemon_stopped () {
+  pidfile="$HOME/.komodo/$1/komodod.pid"
+  if [[ -f $pidfile ]]; then
+    return 0
+  fi
+  return 1
+}
+
 pubkey=$(./printkey.py pub)
 overide_args="$@"
 
 ./listassetchainparams.py | while read args; do
   ac=$(echo $args | grep -o 'ac_name=[^ ,]\+')
   ac=$(echo "${ac#*=}")
+  daemon_stopped $ac
+  outcome=$(echo $?)
+  if [[ ${outcome} -eq 1 ]]; then
+    exit 1
+  fi
+  echo "Starting $ac......"
   conf="$HOME/.komodo/$ac/$ac.conf"
   ret=$(cat $conf | grep blocknotify)
   if [[ "$ret" == "" ]]; then
