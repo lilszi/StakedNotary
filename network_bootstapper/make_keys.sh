@@ -1,7 +1,7 @@
 #!/bin/bash 
 cd "${BASH_SOURCE%/*}" || exit
 source nodes.sh 
-echo "pubkeys=(" > pubkey 
+echo "pubkeys=(" > pubkeys
 echo "radds=(" > radds
 path="/home/ubuntu/StakedNotary"
 for node in "${nodes[@]}"; do

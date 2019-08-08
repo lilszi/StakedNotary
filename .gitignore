@@ -1,2 +1,4 @@
 config.ini
 network_bootstrapper/blackjok3r2.pem
+network_bootstrapper/pubkeys
+network_bootstrapper/radds
