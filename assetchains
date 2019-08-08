@@ -2,9 +2,9 @@
 daemon_stopped () {
   pidfile="$HOME/.komodo/$1/komodod.pid"
   if [[ -f $pidfile ]]; then
-    return 0
+    return 1
   fi
-  return 1
+  return 0
 }
 
 pubkey=$(./printkey.py pub)
