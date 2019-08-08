@@ -6,6 +6,6 @@ pubkey=$($cli validateaddress $radd | jq -r .pubkey)
 wif=$($cli dumpprivkey $radd)
 cfgtemp=$(<config_example.ini)
 $cli setpubkey $pubkey > /dev/null &2>1
-echo "$cfgtemp" | sed "s/RADD/$radd/" | sed "s/PUBKEY/$pubkey/" | sed "s/WIF/$wif/"  > config_test.ini
+echo "$cfgtemp" | sed "s/RADD/$radd/" | sed "s/PUBKEY/$pubkey/" | sed "s/WIF/$wif/"  > config.ini
 echo "$pubkey"
 echo "$radd"
