@@ -26,6 +26,7 @@ overide_args="$@"
     rpcpassword=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 24 | head -n 1)
     echo "rpcuser=$rpcuser" > $conf
     echo "rpcpassword=$rpcpassword" >> $conf
+    echo "rpcport=49303" >> $conf
     echo "daemon=1" >> $conf
     echo "server=1" >> $conf
     echo "txindex=1" >> $conf
