@@ -5,7 +5,7 @@ if [[ $outcome != 0 ]]; then
   echo "Starting iguana"
   # unlock any locked utxos before restarting
   komodo-cli lockunspent true `komodo-cli listlockunspent | jq -c .`
-  screen -d -m "iguana/iguana staked.json &" #> iguana.log 2> error.log &
+  screen -m iguana/iguana staked.json &#> iguana.log 2> error.log &
 fi
 
 myip=`curl -s4 checkip.amazonaws.com`
