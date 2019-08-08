@@ -1,0 +1,8 @@
+#!/bin/bash
+cd "${BASH_SOURCE%/*}" || exit
+source nodes.sh 
+cli="/home/ubuntu/StakedNotary/komodo/master/komodo-cli -ac_name=TEST1"
+for node in "${nodes[@]}"; do
+    echo "$node"
+    ssh ubuntu@$node -i blackjok3r2.pem "$cli ${@}"
+done 
