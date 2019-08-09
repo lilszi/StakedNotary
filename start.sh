@@ -96,7 +96,6 @@ daemon_stopped () {
 }
 
 cd /home/$USER/StakedNotary
-export LABS_FLAGS="ENABLE_LABS"
 git pull
 pubkey=$(./printkey.py pub)
 Radd=$(./printkey.py Radd)
