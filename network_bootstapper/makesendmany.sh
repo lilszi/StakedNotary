@@ -4,7 +4,7 @@ END=',"'
 
 source radds 
 for radd in "${radds[@]}"; do
-    JSON+=$radd\"": 5" 
+    JSON+=$radd\"": 0.5" 
     JSON+=$END
 done
 

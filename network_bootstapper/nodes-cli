@@ -1,8 +1,8 @@
 #!/bin/bash
 cd "${BASH_SOURCE%/*}" || exit
 source nodes.sh 
-cli="/home/ubuntu/StakedNotary/komodo/master/komodo-cli -ac_name=TEST1"
+#cli="/home/ubuntu/StakedNotary/komodo/master/komodo-cli -ac_name=TEST1"
 for node in "${nodes[@]}"; do
     echo "$node"
-    ssh ubuntu@$node -i blackjok3r2.pem "$cli ${@}"
+    ssh ubuntu@$node -i blackjok3r2.pem screen -d -m "bash /home/ubuntu/StakedNotary/start.sh"
 done 
