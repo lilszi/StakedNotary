@@ -85,11 +85,8 @@ daemon_stopped () {
   else
     pidfile="$HOME/.komodo/$1/komodod.pid"
     conf="$HOME/.komodo/$1/$1.conf"
-    ret=$(cat $conf | grep blocknotify)
-    if [[ "$ret" == "" ]]; then
-       echo "blocknotify=curl -s --url \"http://127.0.0.1:7776\" --data \"{\\\"agent\\\":\\\"dpow\\\",\\\"method\\\":\\\"updatechaintip\\\",\\\"blockhash\\\":\\\"%s\\\",\\\"symbol\\\":\\\"$1\\\"}\"" >> "$conf"
-    fi
-  fi
+    sed -i '/blocknotify/d' $conf
+    echo "blocknotify=curl -s --url \"http://127.0.0.1:7776\" --data \"{\\\"agent\\\":\\\"dpow\\\",\\\"method\\\":\\\"updatechaintip\\\",\\\"blockhash\\\":\\\"%s\\\",\\\"symbol\\\":\\\"$1\\\"}\"" >> "$conf"
   while [[ -f $pidfile ]]; do
     pid=$(cat $pidfile 2> /dev/null)
     outcome=$(ps -p $pid 2> /dev/null | grep komodod)
