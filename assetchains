@@ -1,5 +1,12 @@
 #!/bin/bash
 cd "${BASH_SOURCE%/*}" || exit
+daemon_stopped () {
+  pidfile="$HOME/.komodo/$1/komodod.pid"
+  if [[ -f $pidfile ]]; then
+    return 1
+  fi
+  return 0
+}
 
 pubkey=$(./printkey.py pub)
 overide_args="$@"
@@ -7,10 +14,14 @@ overide_args="$@"
 ./listassetchainparams.py | while read args; do
   ac=$(echo $args | grep -o 'ac_name=[^ ,]\+')
   ac=$(echo "${ac#*=}")
-  branch=$(cat assetchains.json | jq -r --arg chain $ac '.[] | select (.ac_name == $chain) | .branch')
   conf="$HOME/.komodo/$ac/$ac.conf"
-  ret=$(cat $conf | grep blocknotify)
-  echo "blocknotify=curl -s --url \"http://127.0.0.1:7776\" --data \"{\\\"agent\\\":\\\"dpow\\\",\\\"method\\\":\\\"updatechaintip\\\",\\\"blockhash\\\":\\\"%s\\\",\\\"symbol\\\":\\\"$ac\\\"}\"" >> $conf
+  if [[ -f $conf ]]; then
+      ret=$(cat $conf | grep blocknotify )
+      if [[ "$ret" == "" ]]; then
+        echo "blocknotify=curl -s --url \"http://127.0.0.1:7776\" --data \"{\\\"agent\\\":\\\"dpow\\\",\\\"method\\\":\\\"updatechaintip\\\",\\\"blockhash\\\":\\\"%s\\\",\\\"symbol\\\":\\\"$ac\\\"}\"" >> $conf
+      fi
+  fi
+  branch=$(cat assetchains.json | jq -r --arg chain $ac '.[] | select (.ac_name == $chain) | .branch')
   if [[ $branch = "null" ]]; then
     $HOME/StakedNotary/komodo/master/komodod $args $overide_args -pubkey=$pubkey > /dev/null 2>&1 &
   else
