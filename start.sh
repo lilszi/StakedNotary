@@ -86,7 +86,9 @@ daemon_stopped () {
     pidfile="$HOME/.komodo/$1/komodod.pid"
     conf="$HOME/.komodo/$1/$1.conf"
     sed -i '/blocknotify/d' $conf
-    echo 'blocknotify=curl -s --url "http://127.0.0.1:7776" --data "{\"agent\":\"dpow\",\"method\":\"updatechaintip\",\"blockhash\":\"%s\",\"symbol\":\"'"\"$1\"}" >> $conf
+    echo "blocknotify=curl -s --url \"http://127.0.0.1:7776\" --data \"{\\\"agent\\\":\\\"dpow\\\",\\\"method\\\":\\\"updatechaintip\\\",\\\"blockhash\\\":\\\"%s\\\",\\\"symbol\\\":\\\"$1\\\"}\"" >> ${conf}
+    fi 
+  fi
   while [[ -f $pidfile ]]; do
     pid=$(cat $pidfile 2> /dev/null)
     outcome=$(ps -p $pid 2> /dev/null | grep komodod)
