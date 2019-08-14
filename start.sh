@@ -101,6 +101,24 @@ pubkey=$(./printkey.py pub)
 Radd=$(./printkey.py Radd)
 privkey=$(./printkey.py wif)
 
+
+if [[ ! -f "$HOME/.komodo/komodo.conf" ]]; then
+    conf="$HOME/.komodo/komodo.conf"
+    cd $HOME/.komodo
+    touch komodo.conf
+    rpcuser=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 24 | head -n 1)
+    rpcpassword=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 24 | head -n 1)
+    echo "rpcuser=$rpcuser" > komodo.conf
+    echo "rpcpassword=$rpcpassword" >> komodo.conf
+    echo "daemon=1" >> komodo.conf
+    echo "server=1" >> komodo.conf
+    echo "txindex=1" >> komodo.conf
+fi
+
+./listassetchains.py | while read chain; do
+    echo "blocknotify=curl -s --url \"http://127.0.0.1:7776\" --data \"{\\\"agent\\\":\\\"dpow\\\",\\\"method\\\":\\\"updatechaintip\\\",\\\"blockhash\\\":\\\"%s\\\",\\\"symbol\\\":\\\"$chain\\\"}\"" >> $HOME/.komodo/$chain/$chain.conf
+done
+
 if [[ ${#pubkey} != 66 ]]; then
   echo -e "\033[1;31m ABORTING!!! pubkey invalid: Please check your config.ini \033[0m"
   exit 1
