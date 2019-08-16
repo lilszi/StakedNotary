@@ -115,10 +115,6 @@ if [[ ! -f "$HOME/.komodo/komodo.conf" ]]; then
     echo "txindex=1" >> komodo.conf
 fi
 
-./listassetchains.py | while read chain; do
-    echo "blocknotify=curl -s --url \"http://127.0.0.1:7776\" --data \"{\\\"agent\\\":\\\"dpow\\\",\\\"method\\\":\\\"updatechaintip\\\",\\\"blockhash\\\":\\\"%s\\\",\\\"symbol\\\":\\\"$chain\\\"}\"" >> $HOME/.komodo/$chain/$chain.conf
-done
-
 if [[ ${#pubkey} != 66 ]]; then
   echo -e "\033[1;31m ABORTING!!! pubkey invalid: Please check your config.ini \033[0m"
   exit 1
