@@ -12,7 +12,7 @@
       "45.63.30.181"
     ],
     "freq": 5,
-    "branch": "nn_testnet"
+    "branch": "nn_testnet1"
   },
   {
     "ac_name": "TEST2",
@@ -28,7 +28,7 @@
       "45.63.30.181"
     ],
     "freq": 5,
-    "branch": "nn_testnet"
+    "branch": "nn_testnet1"
   },
   {
     "ac_name": "TEST3",
@@ -44,7 +44,7 @@
       "45.63.30.181"
     ],
     "freq": 5,
-    "branch": "nn_testnet"
+    "branch": "nn_testnet1"
   },
   {
     "ac_name": "TEST4",
@@ -60,6 +60,6 @@
       "45.63.30.181"
     ],
     "freq": 5,
-    "branch": "nn_testnet"
+    "branch": "nn_testnet1"
   }
 ]
