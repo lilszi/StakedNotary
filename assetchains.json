@@ -78,5 +78,90 @@
       ],
       "freq": 5,
       "branch": "nn_testnet1"
-    }
+  },
+  {
+      "ac_name": "TEST2FAST2",
+      "ac_supply": "5000",
+      "ac_reward": "777",
+      "ac_sapling": "1",
+      "ac_blocktime": "7",
+      "ac_nk": "48,5",
+      "addnode": [
+        "145.32.241.0",
+        "149.28.243.60 ",
+        "95.179.186.132",
+        "136.244.112.57 ",
+        "45.63.30.181"
+      ],
+      "freq": 5,
+      "branch": "nn_testnet1"
+  },
+  {
+      "ac_name": "TEST2FAST3",
+      "ac_supply": "5000",
+      "ac_reward": "777",
+      "ac_sapling": "1",
+      "ac_blocktime": "7",
+      "ac_nk": "48,5",
+      "addnode": [
+        "145.32.241.0",
+        "149.28.243.60 ",
+        "95.179.186.132",
+        "136.244.112.57 ",
+        "45.63.30.181"
+      ],
+      "freq": 5,
+      "branch": "nn_testnet1"
+  },
+  {
+      "ac_name": "TEST2FAST4",
+      "ac_supply": "5000",
+      "ac_reward": "777",
+      "ac_sapling": "1",
+      "ac_blocktime": "7",
+      "ac_nk": "48,5",
+      "addnode": [
+        "145.32.241.0",
+        "149.28.243.60 ",
+        "95.179.186.132",
+        "136.244.112.57 ",
+        "45.63.30.181"
+      ],
+      "freq": 5,
+      "branch": "nn_testnet1"
+  },
+  {
+      "ac_name": "TEST2FAST5",
+      "ac_supply": "5000",
+      "ac_reward": "777",
+      "ac_sapling": "1",
+      "ac_blocktime": "7",
+      "ac_nk": "48,5",
+      "addnode": [
+        "145.32.241.0",
+        "149.28.243.60 ",
+        "95.179.186.132",
+        "136.244.112.57 ",
+        "45.63.30.181"
+      ],
+      "freq": 5,
+      "branch": "nn_testnet1"
+  },
+  {
+      "ac_name": "TEST2FAST6",
+      "ac_supply": "5000",
+      "ac_reward": "777",
+      "ac_sapling": "1",
+      "ac_blocktime": "7",
+      "ac_nk": "48,5",
+      "addnode": [
+        "145.32.241.0",
+        "149.28.243.60 ",
+        "95.179.186.132",
+        "136.244.112.57 ",
+        "45.63.30.181"
+      ],
+      "freq": 5,
+      "branch": "nn_testnet1"
+  }
 ]
