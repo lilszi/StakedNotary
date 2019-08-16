@@ -21,7 +21,7 @@ overide_args="$2 $3 $4 $5 $6 $7 $8"
   conf="$HOME/.komodo/$ac/$ac.conf"
   if [[ -f $conf ]]; then
     sed -i '/blocknotify/d' $conf
-    echo "blocknotify=curl -s --url \"http://127.0.0.1:7776\" --data \"{\\\"agent\\\":\\\"dpow\\\",\\\"method\\\":\\\"updatechaintip\\\",\\\"blockhash\\\":\\\"%s\\\",\\\"symbol\\\":\\\"$1\\\"}\"" >> ${conf}
+    echo "blocknotify=curl -s --url \"http://127.0.0.1:7776\" --data \"{\\\"agent\\\":\\\"dpow\\\",\\\"method\\\":\\\"updatechaintip\\\",\\\"blockhash\\\":\\\"%s\\\",\\\"symbol\\\":\\\"$ac\\\"}\"" >> ${conf}
   fi
   branch=$(cat assetchains.json | jq -r --arg chain $ac '.[] | select (.ac_name == $chain) | .branch')
   if [[ $branch = "null" ]]; then
