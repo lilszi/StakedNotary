@@ -1,6 +1,13 @@
 #!/bin/bash
 cd "${BASH_SOURCE%/*}" || exit
-echo "Stopping Iguana"
-pkill -15 iguana
-./assets-cli stop
-komodo-cli stop
+if [[ ! -z $1 ]]; then
+    echo "[$1] Stopping Iguana... "
+    kill -15 $(pgrep -af "iguana ${json}" | grep -v "$0" | grep -v "SCREEN" | awk '{print $1}') > /dev/null 2>&1
+else 
+    ./listlizards.py | while read branch; do
+        echo "[$branch] Stopping Iguana... "
+        kill -15 $(pgrep -af "iguana ${json}" | grep -v "$0" | grep -v "SCREEN" | awk '{print $1}') > /dev/null 2>&1
+    done
+    ./assets-cli stop
+    komodo-cli stop
+fi

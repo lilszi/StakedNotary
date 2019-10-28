@@ -1,12 +1,12 @@
 #!/bin/bash 
-JSON=\'{\"
+JSON=\"{\"
 END=',"'
 
 source radds 
 for radd in "${radds[@]}"; do
-    JSON+=$radd\"": 0.5" 
+    JSON+=$radd\"": 100" 
     JSON+=$END
 done
 
-JSON="${JSON%??}}'"
+JSON="${JSON%??}}\""
 echo $JSON

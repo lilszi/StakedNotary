@@ -1,8 +1,34 @@
 #!/bin/bash
 cd "${BASH_SOURCE%/*}" || exit
-source nodes.sh 
-#cli="/home/ubuntu/StakedNotary/komodo/master/komodo-cli -ac_name=TEST1"
+last=0
+if [[ $1 == "NA" ]]; then
+    source nodes_NA.sh
+    pem="blackjok3r_NA.pem"
+elif [[ $1 == "SA" ]]; then
+    source nodes_SA.sh
+    pem="blackjok3r_SA.pem"
+elif [[ $1 == "AR" ]]; then
+    source nodes_AR.sh
+    pem="blackjok3r_AR.pem"
+elif [[ $1 == "EU" ]]; then
+    source nodes_EU.sh
+    pem="blackjok3r_EU.pem"
+    last=1
+else
+    echo "no region input"
+fi
+cli="/home/ubuntu/StakedNotary/komodo/master/komodo-cli -ac_name$2"
 for node in "${nodes[@]}"; do
     echo "$node"
-    ssh ubuntu@$node -i blackjok3r2.pem screen -d -m "bash /home/ubuntu/StakedNotary/start.sh"
-done 
+    #ssh ubuntu@$node -i $pem "komodo-cli -ac_name=TEST2FAST stop" &
+    #ssh ubuntu@$node -i $pem "rm -rf /home/ubuntu/SuperNET" & #find /home/ubuntu/.komodo/ -name "*.conf" -delete && 
+    #ssh ubuntu@$node -i $pem "/home/ubuntu/StakedNotary/stats" #&
+    ssh ubuntu@$node -i $pem 'screen -d -m /home/ubuntu/StakedNotary/start.sh' &
+    #ssh ubuntu@$node -i $pem echo "blocknotify=curl -s --url \"http://127.0.0.1:7776\" --data \"{\\\"agent\\\":\\\"dpow\\\",\\\"method\\\":\\\"updatechaintip\\\",\\\"blockhash\\\":\\\"%s\\\",\\\"symbol\\\":\\\"$2\\\"}\" >> /home/ubuntu/.komodo/$2/$2.conf" &
+    #ssh ubuntu@$node -i $pem "$cli $3 $4 $5 $6 $7 $8 $9" &
+done
+
+#57: 02f93c559a62cee528f87826f8c8f5bd423d47f137c04493c3e1ea8db1c040d647 - 35.178.37.231
+#52: 026e2e074ffb062daf441abf7d2107b6d3b2cf3569924651d7dfb6d14bc814d9c7 - 3.8.87.234
+#41: 024cea94122bb1c9d12640f904a4cb789a184c414c8248f04a0e4d41b40c4df0e2 - 13.251.105.137
+#38: 032529d624baf29681cc47db9a4f168898f2b6d8df65ce141f06b121afe2acb584 - 18.231.60.19
