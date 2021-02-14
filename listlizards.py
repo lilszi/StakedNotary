@@ -12,13 +12,11 @@ script_dir = os.getcwd()
 with open(script_dir + '/assetchains.json') as file:
     assetchains = json.load(file)
 
-# always check master
-print("master")
-
 for chain in assetchains:
     if specific_coin and chain['ac_name'] != specific_coin:
         continue
     try:
-        print(chain['branch'])
-    except:
-        print("master")
+        print(chain['iguana'])
+    except Exception as e:
+        # blackjok3r branch is currently default.
+        print('blackjok3r')

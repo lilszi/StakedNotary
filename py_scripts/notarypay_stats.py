@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+#  This script works by counting notary pay. Chains without ac_notarypay will not work, use stats.py
 import lib
 import sys
 import bitcoin
@@ -60,7 +61,7 @@ for block in range(start_height,height):
                 if addr in getnotarysendmany_result:
                     getnotarysendmany_result[addr] += 1
                 else:
-                    print('BUG in the coinbase tx, please report this.')
+                    print('BUG in the coinbase tx [block '+str(block)+'], please report this.')
             except:
                 pass
 for i in notary_keys:
